@@ -1,16 +1,30 @@
 <template>
   <div id="app">
-    <Meal msg="Welcome to Your Vue.js App" />
+    <Meal v-if="currentStep === 0" @updateStep="updateStep" />
+    <Location v-if="currentStep === 1" @updateStep="updateStep" />
+    <Category v-if="currentStep === 2" @updateStep="updateStep" />
   </div>
 </template>
 
 <script>
 import Meal from "./components/Meal.vue";
+import Location from "./components/Location.vue";
+import Category from "./components/Category.vue";
 
 export default {
   name: "App",
   components: {
     Meal,
+    Location,
+    Category,
+  },
+  data: () => ({
+    currentStep: 0,
+  }),
+  methods: {
+    updateStep: function () {
+      this.currentStep += 1;
+    },
   },
 };
 </script>

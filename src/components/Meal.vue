@@ -28,6 +28,7 @@
         </label>
       </li>
     </ul>
+    <button @click="$emit('updateStep')">Next</button>
   </div>
 </template>
 
