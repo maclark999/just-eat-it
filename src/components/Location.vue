@@ -1,37 +1,37 @@
 <template>
-	<div>
-		<h1>Location</h1>
-		<div class="range-slider">
-			<input
-				class="range-slider__range"
-				type="range"
-				value="100"
-				min="800"
-				max="40000"
-				step="50"
-				@change="updateValue($event)"
-				@input="updateValue($event)"
-			/>
-		</div>
-		<div class="range-slider__value">{{ sliderValue }}</div>
-		<button @click="$emit('updateStep')">Next</button>
-	</div>
+  <div>
+    <h1>Location</h1>
+    <div>
+      <input
+        class="w-9/12"
+        type="range"
+        value="0.25"
+        min="0.25"
+        max="25"
+        step="0.25"
+        @input="updateValue($event)"
+      />
+    </div>
+    <div>{{ sliderValue }} miles</div>
+    <button @click="$emit('updateStep')">Next</button>
+  </div>
 </template>
 
 <script>
 export default {
-	name: "Location",
-	data: () => ({
-		sliderValue: 0,
-	}),
-	methods: {
-		updateValue: function(event) {
-			// yelp API requires location radius value in meters
-			const valueInMiles = event.target.value * 0.000621;
-			this.sliderValue = (Math.round(valueInMiles * 4) / 4).toFixed(2);
-		},
-	},
+  name: "Location",
+  data: () => ({
+    sliderValue: 0,
+  }),
+  methods: {
+    updateValue: function (event) {
+      this.sliderValue = event.target.value;
+    },
+  },
 };
 </script>
 
-<style></style>
+<style>
+/* https://codepen.io/seanstopnik/pen/CeLqA */
+/* https://css-tricks.com/sliding-nightmare-understanding-range-input/ */
+</style>
